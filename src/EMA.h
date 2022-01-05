@@ -52,6 +52,14 @@ rafael.reyes.carmona@gmail.com
  *    @f$ M = 10 @f$. Input is `uint16_t` so the maximum shift factor
  *    `K` is @f$ 16 - M = 6 @f$.
  */
+#ifndef _EMA_h
+#define _EMA_h
+
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
 #define zero 0
 
@@ -81,3 +89,5 @@ class EMA {
   private:
     uint_t state;
 };
+
+#endif
