@@ -1,0 +1,32 @@
+{
+	"name": "EMA",
+	"version": "0.1",
+	"keywords": "EMA, filter, Exponetial Moving Average",
+	"description": "Arduino library for Exponential Moving Average filter (EMA), implemented very easily and efficiently.",
+	"authors":
+	[
+		{
+		"name": "Rafael Reyes Carmona",
+		"email": "rafael.reyes.carmona@gmail.com",
+		"url": "https://github.com/RafaelReyesCarmona/",
+		"maintainer": true
+		},
+		{
+		"name": "Pieter P",
+		"url": "https://github.com/tttapa"
+		}
+	],
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/RafaelReyesCarmona/EMA.git"
+	},
+	"frameworks": [
+	  "arduino"
+	],
+	"platforms": [
+	  "atmelavr",
+	  "lgt8f",
+	  "teensy"
+	]
+}
