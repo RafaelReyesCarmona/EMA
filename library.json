@@ -1,6 +1,6 @@
 {
 	"name": "EMA",
-	"version": "0.1",
+	"version": "0.1.1",
 	"keywords": "EMA, filter, Exponetial Moving Average",
 	"description": "Arduino library for Exponential Moving Average filter (EMA), implemented very easily and efficiently.",
 	"authors":
