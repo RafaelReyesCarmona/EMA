@@ -3,9 +3,38 @@
 # EMA #
 
 [![Library: EMA](https://img.shields.io/badge/Library-EMA-red?style=for-the-badge&logo=Arduino)](README.md)
-[![Version: v0.1](https://img.shields.io/badge/Version-v0.1-blue?style=for-the-badge&logo=v)]()
+[![Version: v0.1.1](https://img.shields.io/badge/Version-v0.1.1-blue?style=for-the-badge&logo=v)]()
 
 Arduino library for Exponential Moving Average filter (EMA), implemented very easily and efficiently.
+
+## Information ##
+
+The EMA (exponential moving average) or EWMA (exponentially weighed moving average) is the name for what is probably the easiest realization of the (first-order) low-pass on discrete time-domain data. 
+```C++
+Y[n] = alpha * X[n] + (1 - alpha) * Y[n-1]
+```
+A moving average is commonly used with time series data to smooth out short-term fluctuations and highlight longer-term trends or cycles. When AVR,s (as Arduino) get the value from ADC port, it can get small fluctuations in the measure. 
+
+The factor `alpha` in the difference equation of the Exponential Moving Average filter is a number between zero and one. There are two main ways to implement this multiplication by `alpha`: Either we use floating point numbers and calculate the multiplication directly, or we use integers, and express the multiplication as a division by `1/alpha > 1`.
+
+Both floating point multiplication and integer division are relatively expensive operations, especially on embedded devices or microcontrollers.
+
+We can, however, choose the value for `alpha` in such a way that `1/alpha = 2^K`.
+
+This is useful, because a division by a power of two can be replaced by a very fast right bitshift:
+<p align=center>
+<img src="img/Formula1.png" alt="Formula1" width=200>
+</p>
+We can now rewrite the difference equation of the EMA with this optimization in mind:
+<p align=center>
+<img src="img/Formula2.png" alt="Formula2" width=400>
+</p>
+## Graphic example ##
+
+<p align=center>
+<img src="img/EMA_K2.png" alt="EMA filter K2." width=720>
+</p>
+
 ## Installation ##
 
 ### Arduino IDE ###
@@ -43,14 +72,14 @@ framework = arduino
 lib_deps =
   # RECOMMENDED
   # Accept new functionality in a backwards compatible manner and patches
-  rafaelreyescarmona/EMA @ ^0.1
+  rafaelreyescarmona/EMA @ ^0.1.1
 
   # Accept only backwards compatible bug fixes
   # (any version with the same major and minor versions, and an equal or greater patch version)
-  rafaelreyescarmona/EMA @ ~0.1
+  rafaelreyescarmona/EMA @ ~0.1.1
 
   # The exact version
-  rafaelreyescarmona/EMA @ 0.1
+  rafaelreyescarmona/EMA @ 0.1.1
 ```
 
 For Manual installation in PlatformIO Core:
