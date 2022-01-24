@@ -164,7 +164,7 @@ void loop(){
 
 On AVR,s (as ATMega328) `analogRead` returns an integer between 0 and 1023, which can be represented using 10 bits, so `Resolution = 10`. Input is `uint16_t` so the maximum shift factor `K` is `16 - Resolution = 6`.
 
-If `analogRead` retunrs an 12 bits integer (an integer between 0 and 4095), the maximum shift factor `K` will be `16 - 12 = 4`. 
+If `analogRead` returns an 12 bits integer (an integer between 0 and 4095), the maximum shift factor `K` will be `16 - 12 = 4`. 
 
 ## Changelog ##
 
