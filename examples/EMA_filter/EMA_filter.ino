@@ -2,6 +2,7 @@
  * Example sketch for the EMA library.
  */
 
+ #include <Arduino.h>
  #include <EMA.h>
 
  #define PIN_READ A0

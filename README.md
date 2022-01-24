@@ -29,8 +29,10 @@ We can now rewrite the difference equation of the EMA with this optimization in 
 <p align=center>
 <img src="img/Formula2.png" alt="Formula2" width=400>
 </p>
+
 ## Graphic example ##
 
+In this graphics shows an EMA filter (K=2) using values from an analog port on Arduino Uno.
 <p align=center>
 <img src="img/EMA_K2.png" alt="EMA filter K2." width=720>
 </p>
@@ -94,7 +96,7 @@ pio lib search EMA
 
 2. Type for install:
 ```
-pio lib install ______
+pio lib install 13380
 ```
 
 --- or ---
@@ -131,6 +133,7 @@ Example of use:
  * Example sketch for the EMA library.
  */
 
+ #include <Arduino.h>
  #include <EMA.h>
 
  #define PIN_READ A0
@@ -157,7 +160,20 @@ void loop(){
     delay(250);
 }
 ```
+### Filtering the result of `analogRead` ###
 
+On AVR,s (as ATMega328) `analogRead` returns an integer between 0 and 1023, which can be represented using 10 bits, so `Resolution = 10`. Input is `uint16_t` so the maximum shift factor `K` is `16 - Resolution = 6`.
+
+If `analogRead` retunrs an 12 bits integer (an integer between 0 and 4095), the maximum shift factor `K` will be `16 - 12 = 4`. 
+
+## Changelog ##
+
+### V0.1.1
+
+  * Initialize filter to zero or optional given value.
+
+### V0.1
+  * Initial version.
 ## License ##
 
 This file is part of EMA Library.
